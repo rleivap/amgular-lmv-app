@@ -1,0 +1,31 @@
+<section class="row">
+    <div class="col border border-2 border-primary shadow m-2">
+        <p class="lead fs-2 text-primary">Catálogo de Zapatillas disponibles hoy!!!! {{zapatillas.length}}</p>
+        <div [ngSwitch]="zap">
+            <div *ngFor="let zap of zapatillas">
+                <div *ngSwitchCase="zap.id">
+                    <div class="card shadow m-2 p-2">
+                        <div class="card-header bg-primary text-white" >
+                            Marca:{{zap.marca}}<br />
+                        </div>
+                        <div class="card-body">
+                            <img src={{zap.imagen}} alt={{zap.modelo}} class="img-fluid"/>
+                        </div>
+                        <div class="card-footer" >
+                            Modelo: {{zap.modelo}}<br />
+                            Color: {{zap.color}}<br />
+                            Descripcion: {{zap.descripcion}}<br />
+                            Precio: {{zap.precio}}<br />
+                            Stock: {{zap.stock}}<br />
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div *ngSwitchDefault>
+                <p class="lead fs-2 text danger">Gracias por sus preferencias!!!</p>
+            </div>
+        </div>
+    </div>
+
+</section>

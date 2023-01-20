@@ -1,0 +1,28 @@
+<div class="container">
+    <p class="lead fs-2">Buscador de Cursos</p>
+    <div class="row">
+        <div class="col col-5 border border-2 m-2 p-2 shadow">
+            <p class="lead text-primary">Ingrese curso a buscar busqueda</p>
+            <input type="text" [(ngModel)]="consulta" />
+        </div>
+        <div class="col col-6 border border-2 shadow p-2">
+            <p class="lead text-priamry">Resultado:</p>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Curso</th>
+                        <th>Nivel</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let curso of cursos| busquedaCurso:consulta">
+                        <td>{{curso.id}}</td>
+                        <td>{{curso.nombre}}</td>
+                        <td>{{curso.nivel}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

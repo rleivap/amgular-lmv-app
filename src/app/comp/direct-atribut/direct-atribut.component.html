@@ -1,0 +1,39 @@
+<div class="border border-2 shadow border-primary m-2 p-2">
+    <p class="display-4 lead">Componente Directiva Atributos</p>
+    <div>
+      <p class="fs-2 lead text-primary">Directivas de atributos (ngStyle)</p>
+      <p [ngStyle]="{'color':'green','background-color':'black', 'padding':'20px','margin':'20px', 'font-size':'24px'}">Aplicando el NgStyle con un objeto</p>
+      <p [style.font-size]="'40px'" [style.color]="'red'" [style.background-color]="'black'" [style.padding]="'20px'" [style.margin]="'20px'">
+        usando style modificando fuente (tamaño y color)
+      </p>
+      <hr/>
+
+      <p [style.font-size]="edad>18?'30px':'45px'">EStilo de la fuente condicional (edad) {{edad}}</p>
+      <hr/>
+      <div class="border border-2 p-2 m-2">
+
+        <p class="lead fs-2 text-primary">Uso de ngStyle con una condicion: </p>
+        <div *ngFor="let curso of cursos" [ngStyle]="asignaEstilo(curso.nivel)">
+          <p>Curso: {{curso.nombre}} Nivel: {{curso.nivel}}</p>
+        </div>
+  
+      </div>
+    </div>
+    <br/>
+
+    <div>
+      <p [ngClass]="['fs-2','lead','text-primary']">Directivas de atributos (ngClass)</p>
+      <button class="btn me-2" [class.btn-primary]="edad<18" [class.btn-sm]="fnClase()">
+        uso de ngClass con asignacion de propiedades por class Edad: {{edad}}
+      </button>
+
+      <button class="btn" [class.btn-info]="edad<18">Edad {{edad}}</button>
+
+      <hr/>
+
+      <button [ngClass]="['btn btn-sm btn-primary mt-2']" (click)="cambiaEstiloParrafo()">Cambia Estilo Parrafo</button>
+      <p [ngClass]="fnDefineEstilo()">Estilo que proviene de la clase componente (ngClass)</p>
+      
+    </div>
+
+  </div>

@@ -1,0 +1,34 @@
+<div class="container">
+    <p class="lead fs-2">Buscador de Productos [zapatillas y ropa de vestir] </p>
+    <div class="row">
+        <div class="col col-5 border border-2 m-2 p-2 shadow">
+            <p class="lead text-primary">Ingrese marca o precio:</p>
+            <input type="text" placeholder="Escribe la marca o precio del producto" [(ngModel)]="consulta" />
+        </div>
+        <div class="col col-6 border border-2 shadow p-2">
+            <p class="lead text-priamry">Resultado:</p>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Marca</th>
+                        <th>Modelo</th>
+                        <th>Color</th>
+                        <th>Descripcion</th>
+                        <th>Precio</th>
+                        <th>Stock</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let producto of productos| busquedaProducto:consulta">
+                        <td>{{producto.marca}}</td>
+                        <td>{{producto.modelo}}</td>
+                        <td>{{producto.color}}</td>
+                        <td>{{producto.descripcion}}</td>
+                        <td>{{producto.precio}}</td>
+                        <td>{{producto.stock}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

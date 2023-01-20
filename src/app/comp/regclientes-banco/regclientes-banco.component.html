@@ -1,0 +1,122 @@
+<div class="container">
+    <div class="row">
+        <div class="col col-4 border border-3 shadow border-primary me-2 mt-2">
+            <p class="lead fs-2">Formulario de Registro de clientes</p>
+            <form #clienteForm="ngForm" (ngSubmit)="enviaCliente(clienteForm.value); clienteForm.reset()">
+                <div class="form-group">
+                    <label class="label lead text-primary">Nombre Cliente</label>
+                    <input type="text" class="form-control" required minlength="3" maxlength="14" name="nombre"
+                        #nombreRef="ngModel" ngModel />
+
+                    <div *ngIf="nombreRef.errors && (nombreRef.dirty || nombreRef.touched)"
+                        class="alert alert-danger mt-2">
+                        <div [hidden]="!nombreRef.errors?.['required']">
+                            Nombre obligatorio
+                        </div>
+
+                        <div [hidden]="!nombreRef.errors?.['minlength']">
+                            Como minimo ingresa un nombre de 3 caracteres!!
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="label lead text-primary">Apellido Paterno</label>
+                    <input type="text" class="form-control" required maxlength="15" name="appaterno"
+                        #appaternoRef="ngModel" ngModel />
+
+                    <div *ngIf="appaternoRef.errors && (appaternoRef.dirty || appaternoRef.touched)"
+                        class="alert alert-danger mt-2">
+                        <div [hidden]="!appaternoRef.errors?.['required']">
+                            Apellido Paterno obligatorio
+                        </div>
+
+                        <div [hidden]="!appaternoRef.errors?.['maxlength']">
+                            Como minimo ingresa un nombre de 3 caracteres!!
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="label lead text-primary">Apellido Materno</label>
+                    <input type="text" class="form-control" required maxlength="15" name="apmaterno"
+                        #apmaternoRef="ngModel" ngModel />
+
+                    <div *ngIf="apmaternoRef.errors && (apmaternoRef.dirty || apmaternoRef.touched)"
+                        class="alert alert-danger mt-2">
+                        <div [hidden]="!apmaternoRef.errors?.['required']">
+                            Apellido Materno obligatorio
+                        </div>
+
+                        <div [hidden]="!apmaternoRef.errors?.['maxlength']">
+                            Como minimo ingresa un nombre de 3 caracteres!!
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="label lead text-primary">DNI</label>
+                    <input type="text" class="form-control" required minlength="9" maxlength="9" name="dni"
+                        #dniRef="ngModel" ngModel />
+
+                    <div *ngIf="dniRef.errors && (dniRef.dirty || dniRef.touched)"
+                        class="alert alert-danger mt-2">
+                        <div [hidden]="!dniRef.errors?.['required']">
+                            Dni obligatorio
+                        </div>
+
+                        <div [hidden]="!dniRef.errors?.['minlength']">
+                            Debe completar los 9 digitos!!
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="label lead text-primary">Contaseña</label>
+                    <input type="text" name="contrasena" class="form-control" #contrasenaRef="ngModel" ngModel required
+                        (keypress)="validaContrasena($event)" />
+
+                    <div *ngIf="contrasenaRef.errors && (contrasenaRef.dirty || contrasenaRef.touched)"
+                        class="alert alert-danger mt-2">
+                        <div [hidden]="!contrasenaRef.errors?.['required']">
+                            El clave es obligatorio y solo ingrese valores numericos
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <button class="btn btn-dark mt-3 mb-3" [disabled]="!clienteForm.form.valid">Registra
+                        Cliente</button>
+                </div>
+
+
+            </form>
+        </div>
+        <div class="col col-7 border border-3 shadow border-primary mt-2">
+            <p class="lead text-primary">Resultado</p>
+            <hr />
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Apellido Paterno</th>
+                        <th>Apellido Materno</th>
+                        <th>Dni</th>
+                        <th>Contaseña</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let cliente of clientes">
+                        <td>{{cliente.nombre}}</td>
+                        <td>{{cliente.appaterno}}</td>
+                        <td>{{cliente.apmaterno}}</td>
+                        <td>{{cliente.dni}}</td>
+                        <td>{{cliente.contrasena}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

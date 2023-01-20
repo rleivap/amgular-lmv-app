@@ -1,0 +1,50 @@
+<div class="container">
+    <div class="row">
+        <div class="col col-3 border border-primary shadow border-3 me-2 mt-2">
+            <p class="lead text-primary fs-3">Portal de Películas(servicio)</p>
+
+            <form [formGroup]="formPelicula">
+                <label class="label lead text-primary">Nombre</label>
+                <input type="text" formControlName="nombre" class="form-control" />
+                <label class="label lead text-primary">Estreno</label>
+                <input type="text" formControlName="estreno" class="form-control" />
+                <label class="label lead text-primary">Genero</label>
+                <input type="text" formControlName="genero" class="form-control" />
+                <label class="label lead text-primary">Duracion</label>
+                <input type="text" formControlName="duracion" class="form-control" />
+                <label class="label lead text-primary">Calificacion</label>
+                <input type="text" formControlName="calificacion" class="form-control" />
+
+                <button class="btn btn-sm btn-primary mt-2 mb-2" (click)="registrar()">Registrar</button>
+            </form>
+        </div>
+        <div class="col border border-primary shadow border-3 mt-2">
+            <p class="lead text-primary fs-3">Total de peliculas: {{peliculas.length}}</p>
+            <p class="lead text-primary">Detalle de peliculas disponibles:</p>
+            
+            <div class="row">
+                <div class="col col-4" *ngFor="let pel of peliculas">
+                    <div class="card shadow m-2 p-2">
+                        <div class="card-header bg-primary text-white">
+                            Nombre: {{pel.nombre}}
+                        </div>
+                        <hr/>
+                        <div class="card-body">
+                            Estreno: {{pel.estreno}} <hr/>
+                            Genero:  {{pel.genero}}    <hr/>
+                            duracion:{{pel.duracion}} 
+                        </div>
+                        <hr/>
+                        <div class="card-footer">
+                            Calificacion:{{pel.calificacion}}
+                        </div>
+                        <button class="btn btn-sm btn-danger me-2" (click)="eliminar(pel)">Eliminar</button>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+
+    </div>
+
+</div>

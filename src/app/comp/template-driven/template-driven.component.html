@@ -1,0 +1,65 @@
+<div class="container">
+    <div class="row">
+        <div class="col col-4 border border-3 shadow border-primary me-2 mt-2">
+              <p class="lead fs-2">Formulario de Fruta Template Driven</p> 
+              <form #frutaForm="ngForm" (ngSubmit)="enviaFruta(frutaForm.value); frutaForm.reset()">
+                <div class="form-group">
+                   <label class="label lead text-primary">Nombre</label>
+                   <input type="text" class="form-control" required minlength="3" maxlength="10" name="nombre"
+                   #nombreRef="ngModel" ngModel />    
+                   
+                   <div *ngIf="nombreRef.errors && (nombreRef.dirty || nombreRef.touched)" class="alert alert-danger mt-2">
+                        <div [hidden]="!nombreRef.errors?.['required']">
+                            Nombre de fruta es obligatorio
+                        </div>
+
+                        <div [hidden]="!nombreRef.errors?.['minlength']">
+                            Como minimo el nombre debe tener 3 caracteres...
+                        </div>
+                   </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="label lead text-primary">Precio</label>
+                    <input type="text" name="precio" class="form-control"
+                    #precioRef="ngModel" ngModel required (keypress)="validaPrecio($event)"
+                    />
+
+                    <div *ngIf="precioRef.errors && (precioRef.dirty || precioRef.touched)" class="alert alert-danger mt-2">
+                        <div [hidden]="!precioRef.errors?.['required']">
+                            El precio es obligatorio y debe ser hasta de 3 decimales
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <button class="btn btn-dark mt-3 mb-3" [disabled]="!frutaForm.form.valid">Registrar</button>    
+                </div>
+
+
+              </form>  
+        </div>
+        <div class="col col-7 border border-3 shadow border-primary mt-2">
+            <p class="lead text-primary">Resultado</p>
+            <p class="bg-dark text-white">
+              {{frutas | json}} 
+            </p>
+            <hr/>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Precio</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let fruta of frutas">
+                        <td>{{fruta.nombre}}</td>
+                        <td>{{fruta.precio}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

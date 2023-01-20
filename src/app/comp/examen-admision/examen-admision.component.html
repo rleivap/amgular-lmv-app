@@ -1,0 +1,27 @@
+<section class="row">
+    <div class="col border border-2 border-primary shadow m-2">
+      <p class="lead fs-2 text-primary">Examen de Admision 2022 Nro de Etapas {{evaluaciones.length}}</p>
+      <div [ngSwitch]="eval">
+        <div *ngFor="let ev of evaluaciones">
+          <div *ngSwitchCase="ev.id">
+            <div class="lead fs-2 text-primary border border-2 border-primary p-2">
+              Etapa {{ev.id}}:{{ev.etapa}}<br />
+              Conocimiento:{{ev.conocimiento}}<br />
+              Duracion: {{ev.duracion}}<br />
+            </div>
+          </div>
+        </div>
+        <div *ngSwitchDefault>
+          <p class="lead fs-2 text danger">Culmino el examen Gracias por sus Respuestas!!!</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div *ngIf="eval<evaluaciones.length+1">
+      <p class="alert alert-primary">Presione el boton para pasar a la siguiente etapa</p>
+      <button class="btn btn-warning" (click)="continuarEvaluacion()">{{btnEvalua}}
+        <span *ngIf="eval<evaluaciones.length">{{eval+1}}</span>
+      </button>
+    </div>
+</section>
