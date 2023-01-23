@@ -8,7 +8,7 @@ import { Iempleado } from '../modelo/iempleado';
 })
 export class EmpleadoService {
 
-  url="http://localhost:3001/empleados";
+  url="apiserver1.netlify.app/empleados";
 
   constructor(private http:HttpClient) { }
 

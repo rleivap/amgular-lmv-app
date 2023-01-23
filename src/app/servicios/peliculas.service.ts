@@ -8,7 +8,7 @@ import { Ipelicula } from '../modelo/ipelicula';
 })
 export class PeliculasService {
 
-  url="http://localhost:3001/peliculas";
+  url="apiserver1.netlify.app/peliculas";
 
   constructor(private http:HttpClient) { }
 
